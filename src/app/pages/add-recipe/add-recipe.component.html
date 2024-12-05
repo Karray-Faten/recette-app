@@ -1,0 +1,52 @@
+<mat-card class="add-recipe-card">
+  <h2>Add a New Recipe</h2>
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <!-- Nom de la recette -->
+    <mat-form-field appearance="fill">
+      <mat-label>Recipe Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter the recipe name" />
+      <mat-error *ngIf="recipeForm.get('name')?.invalid && recipeForm.get('name')?.touched">
+        Recipe name is required (min 3 characters).
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter a brief description"></textarea>
+      <mat-error *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched">
+        Description is required (min 10 characters).
+      </mat-error>
+    </mat-form-field>
+
+    <!-- URL de l'image -->
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="image" placeholder="Enter the URL of the recipe image" />
+      <mat-error *ngIf="recipeForm.get('image')?.invalid && recipeForm.get('image')?.touched">
+        An image URL is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Ingrédients -->
+    <mat-form-field appearance="fill">
+      <mat-label>Ingredients</mat-label>
+      <textarea matInput formControlName="ingredients" placeholder="Enter the ingredients"></textarea>
+      <mat-error *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched">
+        Ingredients are required (min 5 characters).
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Instructions -->
+    <mat-form-field appearance="fill">
+      <mat-label>Instructions</mat-label>
+      <textarea matInput formControlName="instructions" placeholder="Enter the cooking instructions"></textarea>
+      <mat-error *ngIf="recipeForm.get('instructions')?.invalid && recipeForm.get('instructions')?.touched">
+        Instructions are required (min 10 characters).
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Bouton de soumission -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="recipeForm.invalid">Add Recipe</button>
+  </form>
+</mat-card>
