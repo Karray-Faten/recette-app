@@ -20,14 +20,14 @@ export class AddRecipeComponent {
     });
   }
 
-  onSubmit() {
-    if (this.recipeForm.valid) {
-      this.recipeService.addRecipe(this.recipeForm.value);
-      console.log('Recipe Data:', this.recipeForm.value);
-      alert('Recipe successfully added!');
-      this.recipeForm.reset();
-    } else {
-      alert('Please fill out the form correctly.');
-    }
-  }
+  //onSubmit() {
+    //if (this.recipeForm.valid) {
+      //this.recipeService.addRecipe(this.recipeForm.value);
+      //console.log('Recipe Data:', this.recipeForm.value);
+      //alert('Recipe successfully added!');
+      //this.recipeForm.reset();
+    //} else {
+      //alert('Please fill out the form correctly.');
+   // }
+  //}
 }

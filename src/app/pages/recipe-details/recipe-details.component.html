@@ -1,4 +1,20 @@
-<div class="recipe-details">
-  <h1>Recipe Details (ID: {{ recipeId }})</h1>
-  <!-- Afficher les détails ici après les avoir récupérés -->
+<div *ngIf="recipe" class="recipe-details">
+  <h1>{{ recipe.name }}</h1>
+  <img [src]="recipe.image" alt="{{ recipe.name }}" class="recipe-image" />
+  <p>{{ recipe.description }}</p>
+
+  <h2>Ingredients</h2>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+  </ul>
+
+  <h2>Instructions</h2>
+  <p>{{ recipe.instructions }}</p>
+
+  <button class="back-button" routerLink="/recipes">Back to Recipes</button>
+</div>
+
+<div *ngIf="!recipe" class="error">
+  <h2>Recipe not found!</h2>
+  <button class="back-button" routerLink="/recipes">Back to Recipes</button>
 </div>

@@ -1,9 +1,91 @@
+/* Global styles for the home container */
 .home-container {
-  text-align: center;
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  color: #333;
 }
-img {
-  max-width: 100%;
-  height: auto;
+
+/* Hero section styles */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #8b0de6, #8b0de6);
+  padding: 50px;
   border-radius: 10px;
+  margin: 20px;
+  color: white;
+}
+
+.hero-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  background-color: #b268e7;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #a06fc2;
+}
+
+.hero-image img {
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Features section styles */
+.features-section {
+  text-align: center;
+  margin: 50px 20px;
+}
+
+.features-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.feature {
+  text-align: center;
+  max-width: 300px;
+}
+
+.feature img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.feature h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 16px;
+  color: #555;
 }
