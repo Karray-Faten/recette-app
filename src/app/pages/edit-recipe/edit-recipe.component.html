@@ -1,0 +1,31 @@
+<mat-card class="edit-recipe-card">
+  <h2>Edit Recipe</h2>
+  <form (ngSubmit)="updateRecipe()">
+    <mat-form-field appearance="fill">
+      <mat-label>Recipe Name</mat-label>
+      <input matInput [(ngModel)]="recipe.name" name="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="recipe.description" name="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input matInput [(ngModel)]="recipe.image" name="image" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Ingredients</mat-label>
+      <textarea matInput [(ngModel)]="recipe.ingredients" name="ingredients" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Instructions</mat-label>
+      <textarea matInput [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Update Recipe</button>
+  </form>
+</mat-card>

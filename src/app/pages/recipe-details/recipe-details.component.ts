@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Recipe } from 'src/app/model/recipe';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -7,43 +9,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
-  recipe: any = null; // Propriété pour une recette spécifique
-  recipeId: number | null = null;
 
-  recipes = [
-    {
-      id: 1,
-      name: 'Spaghetti Bolognese',
-      description: 'A classic Italian pasta dish with a rich tomato sauce.',
-      image: 'assets/spaghetti.jpg',
-      ingredients: ['Spaghetti', 'Ground beef', 'Tomato sauce', 'Onions', 'Garlic'],
-      instructions: 'Cook pasta. Prepare sauce. Combine and serve.'
-    },
-    {
-      id: 2,
-      name: 'Chicken Curry',
-      description: 'A flavorful and spicy chicken curry dish.',
-      image: 'assets/chicken-curry.png',
-      ingredients: ['Chicken', 'Coconut milk', 'Curry powder', 'Onions', 'Garlic'],
-      instructions: 'Cook chicken. Add spices and coconut milk. Simmer and serve.'
-    },
-    {
-      id: 3,
-      name: 'Chocolate Cake',
-      description: 'A moist and rich chocolate cake for dessert lovers.',
-      image: 'assets/cake-chocolat.jpg',
-      ingredients: ['Flour', 'Sugar', 'Cocoa powder', 'Eggs', 'Butter'],
-      instructions: 'Mix ingredients. Bake. Frost and enjoy.'
-    }
-  ];
+  recipe: Recipe | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataService
+  ) {}
 
   ngOnInit(): void {
-    // Récupérer l'ID de la recette depuis l'URL
-    this.recipeId = Number(this.route.snapshot.paramMap.get('id'));
+    // Récupérer l'ID de la recette à partir de l'URL
+    const recipeId = this.route.snapshot.paramMap.get('id')!;
 
-    // Trouver la recette correspondante
-    this.recipe = this.recipes.find(r => r.id === this.recipeId);
+    // Charger les détails de la recette à partir du service
+    this.dataService.getRecipeById(recipeId).subscribe(data => {
+      this.recipe = data;
+    });
   }
 }

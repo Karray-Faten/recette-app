@@ -1,53 +1,76 @@
 <mat-card class="add-recipe-card">
   <h2>Add a New Recipe</h2>
-  <form [formGroup]="recipeForm" >
-     <!--(ngSubmit)="//onSubmit()-->
+  <form (ngSubmit)="addRecipe()" #recipeForm="ngForm">
     <!-- Nom de la recette -->
     <mat-form-field appearance="fill">
       <mat-label>Recipe Name</mat-label>
-      <input matInput formControlName="name" placeholder="Enter the recipe name" />
-      <mat-error *ngIf="recipeForm.get('name')?.invalid && recipeForm.get('name')?.touched">
-        Recipe name is required (min 3 characters).
-      </mat-error>
+      <input matInput [(ngModel)]="recipe.name" name="name" required #name="ngModel"/>
+      <mat-error *ngIf="name.invalid && name.touched">Recipe name is required</mat-error>
     </mat-form-field>
 
     <!-- Description -->
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" placeholder="Enter a brief description"></textarea>
-      <mat-error *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched">
-        Description is required (min 10 characters).
-      </mat-error>
+      <textarea matInput [(ngModel)]="recipe.description" name="description" required #description="ngModel"></textarea>
+      <mat-error *ngIf="description.invalid && description.touched">Description is required</mat-error>
     </mat-form-field>
 
-    <!-- URL de l'image -->
+    <!-- Image -->
     <mat-form-field appearance="fill">
       <mat-label>Image URL</mat-label>
-      <input matInput formControlName="image" placeholder="Enter the URL of the recipe image" />
-      <mat-error *ngIf="recipeForm.get('image')?.invalid && recipeForm.get('image')?.touched">
-        An image URL is required.
-      </mat-error>
+      <input matInput [(ngModel)]="recipe.image" name="image"/>
     </mat-form-field>
 
-    <!-- Ingrédients -->
+    <!-- Ingredients -->
     <mat-form-field appearance="fill">
       <mat-label>Ingredients</mat-label>
-      <textarea matInput formControlName="ingredients" placeholder="Enter the ingredients"></textarea>
-      <mat-error *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched">
-        Ingredients are required (min 5 characters).
-      </mat-error>
+      <textarea matInput [(ngModel)]="recipe.ingredients" name="ingredients" required #ingredients="ngModel"></textarea>
+      <mat-error *ngIf="ingredients.invalid && ingredients.touched">Ingredients are required</mat-error>
     </mat-form-field>
 
     <!-- Instructions -->
     <mat-form-field appearance="fill">
       <mat-label>Instructions</mat-label>
-      <textarea matInput formControlName="instructions" placeholder="Enter the cooking instructions"></textarea>
-      <mat-error *ngIf="recipeForm.get('instructions')?.invalid && recipeForm.get('instructions')?.touched">
-        Instructions are required (min 10 characters).
-      </mat-error>
+      <textarea matInput [(ngModel)]="recipe.instructions" name="instructions" required #instructions="ngModel"></textarea>
+      <mat-error *ngIf="instructions.invalid && instructions.touched">Instructions are required</mat-error>
     </mat-form-field>
+    <mat-card class="recipe-details-card">
+      <h2>Edit Recipe</h2>
+      <form (ngSubmit)="updateRecipe()">
+        <mat-form-field appearance="fill">
+          <mat-label>Recipe Name</mat-label>
+          <input matInput [(ngModel)]="recipe.name" name="name" required />
+        </mat-form-field>
 
-    <!-- Bouton de soumission -->
-    <button mat-raised-button color="primary" type="submit" [disabled]="recipeForm.invalid">Add Recipe</button>
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput [(ngModel)]="recipe.description" name="description" required></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Image URL</mat-label>
+          <input matInput [(ngModel)]="recipe.image" name="image" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ingredients</mat-label>
+          <textarea matInput [(ngModel)]="recipe.ingredients" name="ingredients" required></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Instructions</mat-label>
+          <textarea matInput [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!recipe.name || !recipe.description || !recipe.ingredients || !recipe.instructions">
+          Update Recipe
+        </button>
+      </form>
+    </mat-card>
+
+    <!-- Button to add recipe -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="recipeForm.invalid">
+      Add Recipe
+    </button>
   </form>
 </mat-card>
