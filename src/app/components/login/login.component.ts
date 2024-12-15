@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/shared/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private service: RecipeService) { }
+  constructor(private service: RecipeService,private afAuth: AngularFireAuth) { }
 
   ngOnInit(): void {
   }
@@ -42,8 +44,14 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  signInWithGoogle() {
-    this.service.googleSignIn();
+  googleSignIn() {
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((result) => {
+        console.log('Sign-in successful:', result);
+      })
+      .catch((error) => {
+        console.error('Error during Google sign-in:', error);
+      });
   }
 
 }
