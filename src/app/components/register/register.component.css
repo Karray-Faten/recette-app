@@ -1,0 +1,158 @@
+/* Réinitialisation de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f4f9;
+}
+
+.container {
+  display: flex;
+  width: 900px;
+  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Section de l'image */
+.image-section {
+  flex: 1;
+  background-color: #8b0de6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Section du formulaire */
+.form-section {
+  flex: 1;
+  padding: 40px;
+}
+
+.wrapper {
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #8b0de6;
+}
+
+/* Champs d'entrée */
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px 15px;
+  padding-right: 40px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+}
+
+.input-box i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #8b0de6;
+}
+
+/* Options supplémentaires */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.remember-forgot a {
+  color: #8b0de6;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Bouton */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #8b0de6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #574ccf;
+}
+
+/* Google Sign In */
+.google-signin .google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.google-btn img {
+  margin-right: 10px;
+}
+
+.google-btn span {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Lien Register */
+.register-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #8b0de6;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive pour petit écran */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .image-section {
+    height: 200px;
+  }
+}
