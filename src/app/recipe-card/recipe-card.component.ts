@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-card',
@@ -12,7 +13,12 @@ export class RecipeCardComponent {
   @Input() rating: number = 0;
   @Input() isHeartActivated: boolean = false;
 
+  constructor(private router: Router){
+
+  }
   toggleHeart(): void {
     this.isHeartActivated = !this.isHeartActivated;
-  }
+
+}
+
 }

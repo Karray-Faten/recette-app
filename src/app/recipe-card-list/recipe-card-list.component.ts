@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-card-list',
@@ -6,5 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./recipe-card-list.component.css'],
 })
 export class RecipeCardListComponent {
-  @Input() recipes: any[] = []; // List of recipes
+  @Input() recipes: any[] = []; 
+
+  constructor(private router: Router){
+
+  }
+
+  goto(id:any){
+    this.router.navigate(['/recipe-details', id]);
+  }
 }

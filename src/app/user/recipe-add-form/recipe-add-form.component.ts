@@ -8,6 +8,7 @@ import {
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { RecipeService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-recipe-add-form',
@@ -15,29 +16,25 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./recipe-add-form.component.css']
 })
 
-export class RecipeAddFormComponent  implements OnInit, OnDestroy {
+export class RecipeAddFormComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   validateForm = this.fb.group({
-    email: this.fb.control('', [Validators.email, Validators.required]),
-    password: this.fb.control('', [Validators.required]),
-    checkPassword: this.fb.control('', [Validators.required, this.confirmationValidator]),
-    nickname: this.fb.control('', [Validators.required]),
-
-    website: this.fb.control('', [Validators.required]),
-    captcha: this.fb.control('', [Validators.required]),
-    agree: this.fb.control(false)
+    name: this.fb.control('', [Validators.required]),
+    description: this.fb.control('', [Validators.required]),
+    image: this.fb.control('', [Validators.required]),
+    ingredients: this.fb.control('', [Validators.required]),
+    instructions: this.fb.control('', [Validators.required]),
   });
+
   captchaTooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
     theme: 'twotone'
   };
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(private fb: NonNullableFormBuilder, private recipeService:RecipeService) {}
 
   ngOnInit(): void {
-    this.validateForm.controls.password.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.validateForm.controls.checkPassword.updateValueAndValidity();
-    });
+    // No additional logic required for validation or form initialization at the moment
   }
 
   ngOnDestroy(): void {
@@ -46,8 +43,17 @@ export class RecipeAddFormComponent  implements OnInit, OnDestroy {
   }
 
   submitForm(): void {
-    if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+    const userEmail = localStorage.getItem('email'); // Retrieve email from localStorage
+    if (this.validateForm.valid && userEmail) {
+      const newRecipe = {
+        ...this.validateForm.value,
+        id: this.generateId(), // Assuming a method to generate a unique ID
+        providerId: userEmail.replace(/"/g, '')// Set the providerId as the retrieved email
+      };
+      console.log('submit', newRecipe);
+  
+      this.recipeService.saveRecipe(newRecipe); // Code to save newRecipe to JSON server or desired service
+      this.validateForm.reset();
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -57,18 +63,38 @@ export class RecipeAddFormComponent  implements OnInit, OnDestroy {
       });
     }
   }
-
-  confirmationValidator(control: AbstractControl): ValidationErrors | null {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
+  generateId(): string {
+    return (Math.random() * 1e16).toString(36).substring(0, 8); // Generates a unique alphanumeric string
+  }
+  
+  onFileChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files ? inputElement.files[0] : null;
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        this.convertToBase64(file).then((base64: string) => {
+          this.validateForm.patchValue({
+            image: base64
+          });
+        });
+      };
     }
-    return {};
   }
-
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
+  
+  convertToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
   }
+  
 
-}
+
+}  

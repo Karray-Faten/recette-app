@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Recipe } from 'src/app/model/recipe';
-import { DataService } from 'src/app/shared/data.service';
+import { RecipeService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -14,7 +14,7 @@ export class RecipeDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: RecipeService
   ) {}
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class RecipeDetailsComponent implements OnInit {
     const recipeId = this.route.snapshot.paramMap.get('id')!;
 
     // Charger les détails de la recette à partir du service
-    this.dataService.getRecipeById(recipeId).subscribe(data => {
+    this.dataService.getRecipeById(recipeId).subscribe((data:any) => {
       this.recipe = data;
     });
   }

@@ -1,0 +1,42 @@
+<nz-form class="mt-5 form" nz-form  [formGroup]="editForm" >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" [nzRequired]="true" nzFor="name">Name</nz-form-label>
+      <nz-form-control 
+        [nzSpan]="14" 
+        [nzErrorTip]="editForm.get('name')?.errors?.['required'] ? 'Name is required.' : ''">
+        <input nz-input formControlName="name" id="name" />
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" [nzRequired]="true" nzFor="description">Description</nz-form-label>
+      <nz-form-control 
+        [nzSpan]="14" 
+        [nzErrorTip]="editForm.get('description')?.errors?.['required'] ? 'Description is required.' : ''">
+        <textarea nz-input formControlName="description" id="description"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" [nzRequired]="true" nzFor="ingredients">Ingredients</nz-form-label>
+      <nz-form-control 
+        [nzSpan]="14" 
+        [nzErrorTip]="editForm.get('ingredients')?.errors?.['required'] ? 'Ingredients are required.' : ''">
+        <textarea nz-input formControlName="ingredients" id="ingredients"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" [nzRequired]="true" nzFor="instructions">Instructions</nz-form-label>
+      <nz-form-control 
+        [nzSpan]="14" 
+        [nzErrorTip]="editForm.get('instructions')?.errors?.['required'] ? 'Instructions are required.' : ''">
+        <textarea nz-input formControlName="instructions" id="instructions"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzOffset]="6" [nzSpan]="14">
+          <button nz-button nzType="primary" (click)="submitEditForm()">Edit</button>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-form>

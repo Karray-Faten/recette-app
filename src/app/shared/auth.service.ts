@@ -16,7 +16,8 @@ export class RecipeService {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(res => {
       this.tokenService.setConnectionStatus(true);
       if (res.user?.emailVerified === true) {
-        debugger
+        const email = res.user.email || '';
+        localStorage.setItem('email', JSON.stringify(email.replace(/"/g, '').replace(/\\/g, '')));
         this.router.navigate(['home']);
       } else {
         this.router.navigate(['/varify-email']);
@@ -43,6 +44,7 @@ export class RecipeService {
   logout() {
     this.afAuth.signOut().then(() => {
       localStorage.removeItem('token');
+      localStorage.removeItem('email');
       this.router.navigate(['/login']);
     }).catch((err: FirebaseError) => {
       alert(err.message);  // Using the 'err' variable here

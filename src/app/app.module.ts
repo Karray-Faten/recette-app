@@ -14,7 +14,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';  // Importation du composant AddRecipeComponent
 import { RecipeService } from './shared/auth.service';  // Si nécessaire, importez votre service
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
@@ -23,7 +22,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VarifyEmailComponent } from './components/varify-email/varify-email.component';
-import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -54,12 +52,10 @@ registerLocaleData(en);
     HomeComponent,
     RecipeListComponent,
     RecipeDetailsComponent,
-    AddRecipeComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
     VarifyEmailComponent,
-    EditRecipeComponent,
     RecipeCardComponent,
     RecipeCardListComponent,
       ],
