@@ -37,10 +37,10 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { RecipeCardListComponent } from './recipe-card-list/recipe-card-list.component';
 
-
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-
+import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { UserModule } from './user/user.module';
 
 registerLocaleData(en);
@@ -84,6 +84,8 @@ registerLocaleData(en);
     UserModule,
     NzFormModule,
     NzInputModule,
+    NzCollapseModule,
+    NzCommentModule
   ],
   exports: [RouterModule],
   providers: [RecipeService, { provide: NZ_I18N, useValue: en_US }],  // Ajoutez le service dans les providers si vous ne l'avez pas décoré avec `providedIn: 'root'`

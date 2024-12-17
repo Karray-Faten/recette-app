@@ -1,12 +1,67 @@
-<mat-card class="recipe-details-card" *ngIf="recipe">
-  <img style="width: 500px;" mat-card-image [src]="recipe.image" [alt]="recipe.name" />
-  <mat-card-content>
+<nz-row class="container" nzAlign="middle" nzJustify="start" *ngIf="recipe">
+  <!-- Image Section -->
+  <nz-col nzFlex="0 0 200px">
+    <img
+      style="width: 100%; height: auto; border-radius: 7px;"
+      [src]="recipe.image"
+      [alt]="recipe.name"
+    />
+  </nz-col>
+
+  <!-- Details Section -->
+  <nz-col nzFlex="1 1 auto" style="margin-left: 16px;">
     <h2>{{ recipe.name }}</h2>
-    <p><strong>Description:</strong> {{ recipe.description }}</p>
-    <p><strong>Ingredients:</strong></p>
-    <ul>
-      <li *ngFor="let ingredient of recipe.ingredients.split(',')">{{ ingredient }}</li>
-    </ul>
-    <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-  </mat-card-content>
-</mat-card>
+
+    <nz-collapse>
+      <!-- Description -->
+      <nz-collapse-panel [nzHeader]="'Description'" [nzActive]="true">
+        <p>{{ recipe.description }}</p>
+      </nz-collapse-panel>
+
+      <!-- Ingredients -->
+      <nz-collapse-panel [nzHeader]="'Ingredients'">
+        <ul>
+          <li *ngFor="let ingredient of recipe.ingredients.split(',')">
+            {{ ingredient }}
+          </li>
+        </ul>
+      </nz-collapse-panel>
+
+      <!-- Instructions -->
+      <nz-collapse-panel [nzHeader]="'Instructions'">
+        <p>{{ recipe.instructions }}</p>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </nz-col>
+</nz-row>
+
+<!-- Add new comment -->
+<div *ngIf="verified" style="margin-top: 16px;margin-left: 10%;margin-right: 10%;">
+  <textarea
+    [(ngModel)]="newComment.content"
+    rows="3"
+    placeholder="Write a comment..."
+    style="width: 100%;"
+  ></textarea>
+  <button nz-button nzType="primary" style="margin-top: 8px;" (click)="addComment()">
+    Add Comment
+  </button>
+</div>
+
+<div *ngIf="!verified" style="margin-top: 16px; color: red;">
+  You need to verify your email, please check your inbox.
+</div>
+
+<div style="margin-top: 32px;;margin-left: 10%;margin-right: 10%;">
+  <h3>Comments</h3>
+  <!-- Display comments -->
+  <nz-comment 
+  
+    *ngFor="let comment of comments"
+    [nzAuthor]="comment.author"
+  >
+    <nz-comment-content>
+      <p>{{ comment.content }}</p>
+    </nz-comment-content>
+  </nz-comment>
+</div>
