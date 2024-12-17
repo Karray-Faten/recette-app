@@ -30,7 +30,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
     NzButtonModule, 
     NzFormModule, 
     NzIconModule, 
-    NzInputModule
+    NzInputModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }
