@@ -19,15 +19,32 @@ export class RecipeService {
     return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
   }
 
-  addRecipe(recipe: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(this.apiUrl, recipe);
+  loadMyRecipes(email: string): Observable<any> {
+    // Clean the email to remove double quotes
+    const cleanedEmail = email.replace(/"/g, '');
+    
+    return this.http.get(`${this.apiUrl}?submitterId=${cleanedEmail}`);
   }
 
-  updateRecipe(id: string, recipe: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(`${this.apiUrl}/${id}`, recipe);
+  saveRecipe(newRecipe: any) {
+    this.http.post(this.apiUrl, newRecipe).subscribe({
+      next: (response) => {
+        console.log('Recipe saved successfully', response);
+      },
+      error: (err) => {
+        console.error('Error saving recipe', err);
+      }
+    });
+  }
+
+
+  updateRecipe(recipe: any): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${recipe.id}`, recipe)
   }
 
   deleteRecipe(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  
 }

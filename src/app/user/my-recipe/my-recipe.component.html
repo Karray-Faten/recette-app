@@ -1,0 +1,23 @@
+<nz-table #basicTable [nzBordered]="true" [nzData]="recipes" [nzSize]="'middle'">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let recipe of basicTable.data">
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.description }}</td>
+        <td><img [src]="recipe.image" alt="Recipe Image" style="width: 50px; height: auto;"></td>
+        <td>
+          <button nz-button nzType="link" (click)="viewRecipe(recipe)">View</button>
+          <button nz-button nzType="link" (click)="editRecipe(recipe)">Edit</button>
+          <button nz-button nzType="link" (click)="deleteRecipe(recipe.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  

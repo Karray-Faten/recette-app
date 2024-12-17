@@ -2,6 +2,7 @@
     <!-- Loop through recipes and render the recipe-card component -->
     <app-recipe-card
       *ngFor="let recipe of recipes"
+     (click)="goto(recipe.id)"
       [title]="recipe.name"
       [description]="recipe.description"
       [imageUrl]="recipe.image"
@@ -10,4 +11,3 @@
     >
     </app-recipe-card>
   </div>
-  

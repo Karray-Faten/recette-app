@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+  filteredRecipes: any[] = []; // List to display (filtered or full)
+  backupRecipes: any[] = []; // Backup for the original data
+  searchQuery: string = ''; // User input for search
 
-  cards = [
-    { title: 'Card 1', description: 'Description for Card 1' },
-    { title: 'Card 2', description: 'Description for Card 2' },
-    { title: 'Card 3', description: 'Description for Card 3' },
-    { title: 'Card 4', description: 'Description for Card 4' },
-    { title: 'Card 5', description: 'Description for Card 5' },
-  ];
 
-  constructor(private router: Router,private afs: AngularFirestore) {}
+  constructor(private router: Router,private afs: AngularFirestore, private recipeService: RecipeService) {}
   recipes: any[] = []; // Array to store recipes
 
   ngOnInit(): void {
@@ -26,7 +23,7 @@ export class HomeComponent implements OnInit{
 
   // Fetch all recipes from Firestore
   getAllRecipes() {
-    this.afs
+   /* this.afs
       .collection('/recipes')
       .snapshotChanges()
       .subscribe((response:any) => {
@@ -36,11 +33,32 @@ export class HomeComponent implements OnInit{
           return { id, ...data }; // Combine ID and data into a single object
         });
         console.log(this.recipes)
-      });
-    
+      
+      });*/
+    this.recipeService.getRecipes().subscribe(data =>{
+    this.recipes = data
+    this.filteredRecipes = [...this.recipes];
+    this.backupRecipes = [...this.recipes];
+    })
+   
+   
   }
 
   navigateToRecipes() {
     this.router.navigate(['/recipes']); // Redirige vers la page de recettes
+  }
+
+  onSearch(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+
+    if (query === '') {
+      // Restore backup when search bar is empty
+      this.filteredRecipes = [...this.backupRecipes];
+    } else {
+      // Filter recipes based on the search query
+      this.filteredRecipes = this.recipes.filter(recipe =>
+        recipe.name.toLowerCase().includes(query)
+      );
+    }
   }
 }
