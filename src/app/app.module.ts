@@ -24,13 +24,19 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VarifyEmailComponent } from './components/varify-email/varify-email.component';
 import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'recipes', component: RecipeListComponent },
- { path: 'recipes/:id', component: RecipeDetailsComponent },
-  { path: 'add-recipe', component: AddRecipeComponent },
-];
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { HttpClientModule } from '@angular/common/http';
 
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -47,6 +53,12 @@ const routes: Routes = [
     EditRecipeComponent,
       ],
   imports: [
+    NzCardModule,
+    NzGridModule,
+    NzButtonModule,
+    NzTypographyModule,
+    NzIconModule,
+
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -60,10 +72,11 @@ const routes: Routes = [
     FormsModule,
     AngularFireAuthModule,
     MatCardModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
-  providers: [RecipeService],  // Ajoutez le service dans les providers si vous ne l'avez pas décoré avec `providedIn: 'root'`
+  providers: [RecipeService, { provide: NZ_I18N, useValue: en_US }],  // Ajoutez le service dans les providers si vous ne l'avez pas décoré avec `providedIn: 'root'`
   bootstrap: [AppComponent]
 })
 export class AppModule { }

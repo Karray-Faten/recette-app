@@ -1,0 +1,18 @@
+<p>recipe-card works!</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
+    <nz-card 
+      nzHoverable 
+      style="width: 240px" 
+      [nzCover]="coverTemplate"
+    >
+      <nz-card-meta 
+        [nzTitle]="card.title" 
+        [nzDescription]="card.description">
+      </nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img style="    width: 200px;
+      height: 200px;
+      object-fit: cover;" alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+    </ng-template>
+  </div>

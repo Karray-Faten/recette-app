@@ -7,9 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
+
+  cards = [
+    { title: 'Card 1', description: 'Description for Card 1' },
+    { title: 'Card 2', description: 'Description for Card 2' },
+    { title: 'Card 3', description: 'Description for Card 3' },
+    { title: 'Card 4', description: 'Description for Card 4' },
+    { title: 'Card 5', description: 'Description for Card 5' },
+  ];
+
   constructor(private router: Router) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  
   }
 
   navigateToRecipes() {
