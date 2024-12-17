@@ -39,6 +39,12 @@ import { NzRateModule } from 'ng-zorro-antd/rate';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import { RecipeCardListComponent } from './recipe-card-list/recipe-card-list.component';
 
+
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+
+import { UserModule } from './user/user.module';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -78,7 +84,10 @@ registerLocaleData(en);
     AngularFireAuthModule,
     MatCardModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule,
+    NzFormModule,
+    NzInputModule,
   ],
   exports: [RouterModule],
   providers: [RecipeService, { provide: NZ_I18N, useValue: en_US }],  // Ajoutez le service dans les providers si vous ne l'avez pas décoré avec `providedIn: 'root'`
