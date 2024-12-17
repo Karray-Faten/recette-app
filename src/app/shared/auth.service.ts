@@ -16,6 +16,7 @@ export class RecipeService {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(res => {
       this.tokenService.setConnectionStatus(true);
       if (res.user?.emailVerified === true) {
+        debugger
         this.router.navigate(['home']);
       } else {
         this.router.navigate(['/varify-email']);

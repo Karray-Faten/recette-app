@@ -35,6 +35,9 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzRateModule } from 'ng-zorro-antd/rate';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { RecipeCardListComponent } from './recipe-card-list/recipe-card-list.component';
 
 
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -57,7 +60,8 @@ registerLocaleData(en);
     ForgotPasswordComponent,
     VarifyEmailComponent,
     EditRecipeComponent,
-    
+    RecipeCardComponent,
+    RecipeCardListComponent,
       ],
   imports: [
     NzCardModule,
@@ -65,7 +69,7 @@ registerLocaleData(en);
     NzButtonModule,
     NzTypographyModule,
     NzIconModule,
-
+    NzRateModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
