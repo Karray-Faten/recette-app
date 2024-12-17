@@ -8,11 +8,16 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { RecipeAddFormComponent } from './recipe-add-form/recipe-add-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @NgModule({
   declarations: [
     UserComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    RecipeAddFormComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +25,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzButtonModule,
     NzGridModule,
     NzIconModule,
-    NzTypographyModule
+    NzTypographyModule,
+    ReactiveFormsModule, 
+    NzButtonModule, 
+    NzFormModule, 
+    NzIconModule, 
+    NzInputModule
   ]
 })
 export class UserModule { }

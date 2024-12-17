@@ -9,6 +9,7 @@ import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.co
 import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
 import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
 import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
+import { RecipeAddFormComponent } from './user/recipe-add-form/recipe-add-form.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'home',pathMatch:'full'},
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'edit-recipe/:id', component: EditRecipeComponent },
   { path: 'recipes', component: RecipeListComponent },
   { path: 'recipes/:id', component: RecipeDetailsComponent },
-   { path: 'add-recipe', component: AddRecipeComponent },
+  { path: 'recipe/add', component: RecipeAddFormComponent },
 
 ];
 

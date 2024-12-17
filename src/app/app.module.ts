@@ -36,6 +36,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
+
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+
+import { UserModule } from './user/user.module';
+
 registerLocaleData(en);
 
 @NgModule({
@@ -51,6 +57,7 @@ registerLocaleData(en);
     ForgotPasswordComponent,
     VarifyEmailComponent,
     EditRecipeComponent,
+    
       ],
   imports: [
     NzCardModule,
@@ -73,7 +80,10 @@ registerLocaleData(en);
     AngularFireAuthModule,
     MatCardModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    UserModule,
+    NzFormModule,
+    NzInputModule,
   ],
   exports: [RouterModule],
   providers: [RecipeService, { provide: NZ_I18N, useValue: en_US }],  // Ajoutez le service dans les providers si vous ne l'avez pas décoré avec `providedIn: 'root'`
