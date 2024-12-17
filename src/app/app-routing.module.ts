@@ -7,18 +7,24 @@ import { VarifyEmailComponent } from './components/varify-email/varify-email.com
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RecipeDetailsComponent } from './pages/recipe-details/recipe-details.component';
 import { EditRecipeComponent } from './pages/edit-recipe/edit-recipe.component';
+import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
+import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'login',pathMatch:'full'},
+  {path: '', redirectTo:'home',pathMatch:'full'},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path: 'home', component : HomeComponent},
   {path: 'varify-email', component : VarifyEmailComponent},
   {path: 'forgot-password', component : ForgotPasswordComponent},
   { path: 'recipe-details/:id', component: RecipeDetailsComponent },
-  { path: 'edit-recipe/:id', component: EditRecipeComponent }
+  { path: 'edit-recipe/:id', component: EditRecipeComponent },
+  { path: 'recipes', component: RecipeListComponent },
+  { path: 'recipes/:id', component: RecipeDetailsComponent },
+   { path: 'add-recipe', component: AddRecipeComponent },
 
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

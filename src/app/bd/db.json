@@ -1,0 +1,37 @@
+{
+    "recipes": [
+      {
+        "id": "recipe-1",
+        "name": "Pasta Carbonara",
+        "description": "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+        "image": "https://example.com/images/carbonara.jpg",
+        "ingredients": "Pasta, Eggs, Cheese, Pancetta, Pepper",
+        "instructions": "1. Cook pasta. 2. Mix eggs and cheese. 3. Fry pancetta. 4. Combine everything.",
+        "rating": 5,
+        "comments": [
+          {
+            "user": "user1@example.com",
+            "comment": "Delicious and easy to make!"
+          }
+        ],
+        "submitterId": "user1@example.com"
+      },
+      {
+        "id": "recipe-2",
+        "name": "Chocolate Cake",
+        "description": "A rich and moist chocolate cake recipe.",
+        "image": "https://example.com/images/chocolate-cake.jpg",
+        "ingredients": "Flour, Sugar, Cocoa, Eggs, Butter",
+        "instructions": "1. Mix ingredients. 2. Bake in the oven at 180°C for 30 minutes.",
+        "rating": 4,
+        "comments": [
+          {
+            "user": "user2@example.com",
+            "comment": "Perfect for birthdays!"
+          }
+        ],
+        "submitterId": "user2@example.com"
+      }
+    ]
+  }
+  

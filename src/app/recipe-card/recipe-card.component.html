@@ -1,0 +1,37 @@
+<nz-card [nzBordered]="true" [nzHoverable]="true" class="recipe-card">
+
+
+  
+    <!-- Image -->
+    <div class="recipe-image">
+      <img
+        style="border-radius: 7px;"
+        [src]="imageUrl"
+        [alt]="title"
+        width="100%"
+        height="200px"
+      />
+    </div>
+  
+
+    <div class="recipe-content mt-3 mb-2">
+        <h5 nz-typography>{{ title }}</h5>
+   
+            <i class="heart-icon" (click)="toggleHeart()"
+              nz-icon
+              [nzType]="isHeartActivated ? 'heart' : 'heart-o'"
+              [nzTheme]="isHeartActivated ? 'fill' : 'outline'"
+              [style.color]="isHeartActivated ? '#f5222d' : '#aaa'"
+              class="heart"
+            ></i>
+
+    </div>
+
+  
+    <!-- Description -->
+    <p nz-typography>{{ description }}</p>
+  
+    <!-- Rating -->
+    <nz-rate [nzCount]="5" [nzDisabled]="true"></nz-rate>
+  </nz-card>
+  

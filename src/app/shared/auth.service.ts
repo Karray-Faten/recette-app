@@ -3,18 +3,20 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider,  } from 'firebase/auth';  // Import FirebaseError for better error typing
 import { Router } from '@angular/router';
 import { FirebaseError } from '@angular/fire/app';
+import { TokenService } from './token-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router, private tokenService:TokenService) { }
 
   // login method
   login(email: string, password: string): Promise<void> {
     return this.afAuth.signInWithEmailAndPassword(email, password).then(res => {
-      localStorage.setItem('token', 'true');
+      this.tokenService.setConnectionStatus(true);
       if (res.user?.emailVerified === true) {
+        debugger
         this.router.navigate(['home']);
       } else {
         this.router.navigate(['/varify-email']);
@@ -68,8 +70,9 @@ export class RecipeService {
   // sign in with Google
   googleSignIn() {
     this.afAuth.signInWithPopup(new GoogleAuthProvider()).then(res => {
+      localStorage.setItem('token', 'true');
       this.router.navigate(['/home']);
-      localStorage.setItem('token', JSON.stringify(res.user?.uid));
+  
     }).catch((err: FirebaseError) => {
       alert(err.message);  // Using the 'err' variable here
     });

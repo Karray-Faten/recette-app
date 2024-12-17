@@ -1,44 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Recipe } from '../model/recipe';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-
+import { Recipe } from '../model/recipe';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class DataService {
+export class RecipeService {
+  private apiUrl = 'http://localhost:3000/recipes';  // JSON server endpoint
 
-  constructor(private afs : AngularFirestore, private fireStorage : AngularFireStorage) { }
+  constructor(private http: HttpClient) {}
 
-
-  // add recipe
-  addrecipe(recipe : Recipe) {
-    recipe.id = this.afs.createId();
-    return this.afs.collection('/recipes').add(recipe);
+  getRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.apiUrl);
   }
 
-  // get all recipes
-  getAllrecipes() {
-    return this.afs.collection('/recipes').snapshotChanges();
+  getRecipeById(id: string): Observable<Recipe> {
+    return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
   }
 
-  // delete recipe
-  deleterecipe(recipe: Recipe): Promise<void> {
-    return this.afs.doc('/recipes/' + recipe.id).delete();  // `delete()` retourne une promesse
+  addRecipe(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(this.apiUrl, recipe);
   }
 
-
-  updaterecipe(recipe: Recipe): Promise<void> {
-    return this.afs.doc(`/recipes/${recipe.id}`).update(recipe); // Mise à jour de la recette dans Firestore
+  updateRecipe(id: string, recipe: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.apiUrl}/${id}`, recipe);
   }
 
-
-   // Méthode pour récupérer une recette par son ID
-   getRecipeById(id: string): Observable<Recipe> {
-    return this.afs.collection('/recipes').doc(id).valueChanges() as Observable<Recipe>;
+  deleteRecipe(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-
 }

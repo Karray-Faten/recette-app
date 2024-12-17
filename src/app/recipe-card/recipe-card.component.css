@@ -1,0 +1,64 @@
+.card-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .product-card {
+    position: relative;
+ /*   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+  }
+  
+  .heart-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .heart-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .product-title {
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .product-description {
+    text-align: center;
+    color: #555;
+    padding: 0 15px 10px;
+  }
+  
+  .product-rating {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .product-image img {
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .recipe-card{
+    width: 300px;
+    height: 400px;
+    border-radius: 7px;
+    box-shadow: 2px 2px 7px 7px #f1f1f182;
+  }
+  .recipe-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .heart{
+    scale: 2;
+  }
