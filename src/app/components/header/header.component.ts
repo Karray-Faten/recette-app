@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit{
 
   token: boolean = false; // Reactive connection state
 
-  constructor(private router: Router, private tokenService: TokenService) {
+  constructor(private router: Router, private tokenService: TokenService, private auth: RecipeService) {
     // Subscribe to the BehaviorSubject to listen for connection changes
     this.tokenService.connected$.subscribe((status) => {
       this.token = status;
@@ -37,5 +37,8 @@ export class HeaderComponent implements OnInit{
 
       console.log('Token status updated:', this.token); // Debug log
     });
+  }
+  logout(){
+    this.auth.logout();
   }
 }

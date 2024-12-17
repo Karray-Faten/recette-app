@@ -1,0 +1,13 @@
+<div class="recipe-card-list-container">
+    <!-- Loop through recipes and render the recipe-card component -->
+    <app-recipe-card
+      *ngFor="let recipe of recipes"
+      [title]="recipe.name"
+      [description]="recipe.description"
+      [imageUrl]="recipe.image"
+      [rating]="recipe.rating"
+      [isHeartActivated]="recipe.isHeartActivated"
+    >
+    </app-recipe-card>
+  </div>
+  
