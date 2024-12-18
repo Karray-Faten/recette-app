@@ -13,9 +13,9 @@
         <td>{{ recipe.description }}</td>
         <td><img [src]="recipe.image" alt="Recipe Image" style="width: 50px; height: auto;"></td>
         <td>
-          <button nz-button nzType="link" (click)="viewRecipe(recipe)">View</button>
-          <button nz-button nzType="link" (click)="editRecipe(recipe)">Edit</button>
-          <button nz-button nzType="link" (click)="deleteRecipe(recipe.id)">Delete</button>
+          <button nz-button nzType="primary" nzShape="round" (click)="viewRecipe(recipe)"><span nz-icon nzType="eye" nzTheme="outline"></span></button>
+          <button nz-button nzType="primary" nzShape="round" (click)="editRecipe(recipe)"><span nz-icon nzType="edit" nzTheme="outline"></span></button>
+          <button nz-button nzType="primary" nzShape="round" nzDanger (click)="deleteRecipe(recipe.id)"><span nz-icon nzType="delete" nzTheme="outline"></span></button>
         </td>
       </tr>
     </tbody>

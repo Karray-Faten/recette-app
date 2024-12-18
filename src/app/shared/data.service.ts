@@ -23,10 +23,13 @@ export class RecipeService {
     // Clean the email to remove double quotes
     const cleanedEmail = email.replace(/"/g, '');
     
-    return this.http.get(`${this.apiUrl}?submitterId=${cleanedEmail}`);
+    return this.http.get(`${this.apiUrl}?providerId=${cleanedEmail}`);
   }
 
   saveRecipe(newRecipe: any) {
+    const email = localStorage.getItem('email') || 'null'; // Récupérer l'email de l'utilisateur connecté
+    newRecipe.submitterId = email; // Ajouter l'attribut submitterId à la recette
+  
     this.http.post(this.apiUrl, newRecipe).subscribe({
       next: (response) => {
         console.log('Recipe saved successfully', response);

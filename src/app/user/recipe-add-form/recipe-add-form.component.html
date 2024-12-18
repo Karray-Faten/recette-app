@@ -1,7 +1,8 @@
+<!-- <h1>Add recipe</h1> -->
 <form style="display: block; margin: auto;" class="mt-5" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Name</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input recipe name!">
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input recipe name with min 3 caracters!">
       <input nz-input formControlName="name" id="name" />
     </nz-form-control>
   </nz-form-item>

@@ -33,7 +33,8 @@ export class RecipeEditComponent implements OnInit {
       name: [this.recipe.name, Validators.required],
       description: [this.recipe.description, Validators.required],
       ingredients: [this.recipe.ingredients, Validators.required],
-      instructions: [this.recipe.instructions, Validators.required]
+      instructions: [this.recipe.instructions, Validators.required],
+      comments: [this.recipe.comments]
     });
   }
 
@@ -45,7 +46,8 @@ export class RecipeEditComponent implements OnInit {
         image: this.recipe.image,
         description: this.editForm.get('description')?.value,
         ingredients: this.editForm.get('ingredients')?.value,
-        instructions: this.editForm.get('instructions')?.value
+        instructions: this.editForm.get('instructions')?.value,
+        comments : this.editForm.get('comments')?.value,
       };
   
       // Call to updateRecipe service

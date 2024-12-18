@@ -19,7 +19,7 @@ import { RecipeService } from 'src/app/shared/data.service';
 export class RecipeAddFormComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   validateForm = this.fb.group({
-    name: this.fb.control('', [Validators.required]),
+    name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
     description: this.fb.control('', [Validators.required]),
     image: this.fb.control('', [Validators.required]),
     ingredients: this.fb.control('', [Validators.required]),
